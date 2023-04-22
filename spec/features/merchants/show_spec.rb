@@ -94,8 +94,20 @@ RSpec.describe 'Merchant Show Dashboard Page', type: :feature do
         expect(page).to have_link("View My Discounts")
         click_link("View My Discounts")
         expect(current_path).to eq(merchant_bulk_discounts_path(@merchant))
-        
-            # require 'pry'; binding.pry
+        end
+
+        it "I am taken to my bulk discounts index page were I see all of my bulk discounts including their percentage discount and quantity thresholds" do
+          visit merchant_bulk_discounts_path(merchant1)
+
+          within"h1" do
+            expect(page).to have_content("Bulk Discounts Index Page")
+          end
+
+          within ".bulk_discount" do
+            expect(page).to have_content("Percentage Discount: 20")
+            expect(page).to have_content("Percentage Discount: 30")
+            expect(page).to have_content("Quantity Thresholds: 10")
+          end
         end
       end
     end
