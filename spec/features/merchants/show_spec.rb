@@ -3,6 +3,9 @@ require 'rails_helper'
 RSpec.describe 'Merchant Show Dashboard Page', type: :feature do
   let!(:merchant1) {Merchant.create!(name:'Steve')}
   let!(:merchant2) {Merchant.create!(name:'Fred')}
+  let!(:bulk1) {BulkDiscount.create!(percentage_discount: 20, quantity_threshold: 10, merchant_id: merchant1.id)}
+  let!(:bulk2) {BulkDiscount.create!(percentage_discount: 30, quantity_threshold: 15, merchant_id: merchant1.id)}
+  let!(:bulk3) {BulkDiscount.create!(percentage_discount: 15, quantity_threshold: 5, merchant_id: merchant2.id)}
 
   before(:each) do
     test_data
@@ -82,7 +85,30 @@ RSpec.describe 'Merchant Show Dashboard Page', type: :feature do
           expect(@invoice2.created_at.strftime("%A %B %d %Y")).to appear_before(@invoice3.created_at.strftime("%A %B %d %Y"))
         end
       end
+
+      describe 'User Story 1 When I visit my merchant dashboard' do
+        it "I see a link to view all my discounts" do
+        visit merchant_dashboard_path(@merchant)
+        save_and_open_page
+    
+        expect(page).to have_link("View My Discounts")
+        click_link("View My Discounts")
+        expect(current_path).to eq(merchant_bulk_discounts_path(@merchant))
+        
+            # require 'pry'; binding.pry
+        end
+      end
     end
   end
 end
 
+# 1: Merchant Bulk Discounts Index
+
+# As a merchant
+# When I visit my merchant dashboard
+# Then I see a link to view all my discounts
+# When I click this link
+# Then I am taken to my bulk discounts index page
+# Where I see all of my bulk discounts including their
+# percentage discount and quantity thresholds
+# And each bulk discount listed includes a link to its show page
