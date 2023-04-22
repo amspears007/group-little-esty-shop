@@ -98,6 +98,7 @@ RSpec.describe 'Merchant Show Dashboard Page', type: :feature do
 
         it "I am taken to my bulk discounts index page were I see all of my bulk discounts including their percentage discount and quantity thresholds" do
           visit merchant_bulk_discounts_path(merchant1)
+          save_and_open_page
 
           within"h1" do
             expect(page).to have_content("Bulk Discounts Index Page")
