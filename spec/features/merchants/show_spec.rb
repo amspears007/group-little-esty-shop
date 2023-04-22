@@ -86,14 +86,15 @@ RSpec.describe 'Merchant Show Dashboard Page', type: :feature do
         end
       end
 
-        describe 'User Story 1 When I visit my merchant dashboard' do
-          it "I see a link to view all my discounts" do
-          visit merchant_dashboard_path(@merchant)
-      
-          expect(page).to have_link("View My Discounts")
-          click_link("View My Discounts")
-          expect(current_path).to eq(merchant_bulk_discounts_path(@merchant))
-         
+      describe 'User Story 1 When I visit my merchant dashboard' do
+        it "I see a link to view all my discounts" do
+        visit merchant_dashboard_path(@merchant)
+        save_and_open_page
+    
+        expect(page).to have_link("View My Discounts")
+        click_link("View My Discounts")
+        expect(current_path).to eq(merchant_bulk_discounts_path(@merchant))
+        
             # require 'pry'; binding.pry
         end
       end
