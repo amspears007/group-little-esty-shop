@@ -1,10 +1,10 @@
 class UnsplashService
   def random_image(name)
-    get_url("https://api.unsplash.com/search/photos/?client_id=fZLFtH4Rwo9htDmPF2_l0LThWf8p-Z2qb8cxAKE8-q8&query=#{name}&per_page=1")
+    get_url("https://api.unsplash.com/search/photos/?client_id=eG4gDkR-8gsubeHyHJEo2mw8uL_Y4_7ZoqXSD8yZZ1w")
   end
 
   def project_logo
-    get_url('https://api.unsplash.com/photos/pFqrYbhIAXs/?client_id=1cd3V-4rbtUVO3VE00Xus_BcKE95xqwK4sdttc4GFsY')
+    get_url('https://api.unsplash.com/photos/pFqrYbhIAXs/?client_id=eG4gDkR-8gsubeHyHJEo2mw8uL_Y4_7ZoqXSD8yZZ1w')
   end
 
   def get_url(url)
