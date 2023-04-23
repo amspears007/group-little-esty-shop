@@ -1,5 +1,9 @@
 class Merchants::BulkDiscountsController < ApplicationController
   def index
-    # require 'pry'; binding.pry
+    @merchant = Merchant.find(params[:merchant_id])
+  end
+  
+  def show
+   
   end
 end
