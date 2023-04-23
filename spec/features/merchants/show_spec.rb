@@ -89,7 +89,7 @@ RSpec.describe 'Merchant Show Dashboard Page', type: :feature do
       describe 'User Story 1 When I visit my merchant dashboard' do
         it "I see a link to view all my discounts" do
         visit merchant_dashboard_path(@merchant)
-        save_and_open_page
+       
     
         expect(page).to have_link("View My Discounts")
         click_link("View My Discounts")
@@ -104,18 +104,32 @@ RSpec.describe 'Merchant Show Dashboard Page', type: :feature do
             expect(page).to have_content("Bulk Discounts Index Page")
           end
 
-          within ".bulk_discount" do
-            expect(page).to have_content("Percentage Discount: 20")
-            expect(page).to have_content("Percentage Discount: 30")
-            expect(page).to have_content("Quantity Thresholds: 10")
+          within"h3" do
+            expect(page).to have_content("#{merchant1.name} Discounts")
           end
+
+          within ".bulk_discount" do
+            expect(page).to have_content("Discount: 20")
+            expect(page).to have_content("Discount: 30")
+            expect(page).to have_content("Minimum Quantity: 10")
+          end
+        end
+
+        it 'each bulk discount listed has a link to its show page' do
+         
+        visit merchant_bulk_discounts_path(merchant1)
+        save_and_open_page
+
+        expect(page).to have_link(bulk1.id)
+        click_link(bulk1.id)
+        expect(current_path).to eq(merchant_bulk_discount_path(merchant1, bulk1))
         end
       end
     end
   end
 end
 
-# 1: Merchant Bulk Discounts Index
+#Merchant Bulk Discounts Index
 
 # As a merchant
 # When I visit my merchant dashboard
