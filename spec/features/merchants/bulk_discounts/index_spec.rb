@@ -19,9 +19,9 @@ RSpec.describe 'Merchant Bulk Discounts Index', type: :feature do
       expect(current_path).to eq(new_merchant_bulk_discount_path(merchant1))
       save_and_open_page
 
-        # expect(page).to have_field(:bulk_discount_percentage)
-        fill_in 'Precentage Discount', with: '10'
-        fill_in 'Quantity Threshold', with: '5'
+        expect(page).to have_field(:Percentage_Discount)
+        fill_in 'Percentage_Discount', with: 10
+        fill_in 'Quantity_Threshold', with: 5
         click_button "Add Discount"
 
       # click_on 'Create Artist'
