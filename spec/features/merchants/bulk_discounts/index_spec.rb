@@ -24,10 +24,9 @@ RSpec.describe 'Merchant Bulk Discounts Index', type: :feature do
       click_button "Add Discount"
       
       save_and_open_page
-      # require 'pry'; binding.pry
       expect(current_path).to eq(merchant_bulk_discounts_path(merchant1))
       expect(page).to have_content('Discount: 10 %')
-
+      expect(page).to have_content('Minimum Quantity: 5')
       end
     end
   end
