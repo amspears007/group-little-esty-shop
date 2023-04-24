@@ -6,5 +6,6 @@
   <p> Discount: <%= discount.percentage_discount  %>%</p>
   <p> Minimum Quantity: <%= discount.quantity_threshold  %></p>
   <% end %>
-
 </div>
+
+<p> <%= link_to "New Discount", new_merchant_bulk_discount_path(@merchant)  %>
