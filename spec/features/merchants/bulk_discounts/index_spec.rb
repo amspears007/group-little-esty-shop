@@ -17,15 +17,16 @@ RSpec.describe 'Merchant Bulk Discounts Index', type: :feature do
       click_link 'New Discount'
       
       expect(current_path).to eq(new_merchant_bulk_discount_path(merchant1))
+      
+      expect(page).to have_field(:percentage_discount)
+      fill_in 'Percentage Discount', with: 10
+      fill_in 'Quantity Threshold', with: 5
+      click_button "Add Discount"
+      
       save_and_open_page
-
-        expect(page).to have_field(:Percentage_Discount)
-        fill_in 'Percentage_Discount', with: 10
-        fill_in 'Quantity_Threshold', with: 5
-        click_button "Add Discount"
-
-      expect(current_path).to eq(merchant_bulk_discounts_path(merchant_1))
-      expect(page).to have_content('Percentage_Discount 10%')
+      # require 'pry'; binding.pry
+      expect(current_path).to eq(merchant_bulk_discounts_path(merchant1))
+      expect(page).to have_content('Discount: 10 %')
 
       end
     end
