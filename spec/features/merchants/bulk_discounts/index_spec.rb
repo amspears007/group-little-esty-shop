@@ -12,7 +12,7 @@ RSpec.describe 'Merchant Bulk Discounts Index', type: :feature do
   end
 
   describe "merchant_bulk_discounts_path(merchant1)" do
-    it "I see a link to create a new discount, when I click this link I am taken to a new page where I see a form to add a new bulk discount" do
+    it "I see a link to create a new discount, when I click this link I am taken to a new page where I see a form to add a new bulk discount I fill in the form with valid data" do
       visit merchant_bulk_discounts_path(merchant1)
       click_link 'New Discount'
       
@@ -24,10 +24,8 @@ RSpec.describe 'Merchant Bulk Discounts Index', type: :feature do
         fill_in 'Quantity_Threshold', with: 5
         click_button "Add Discount"
 
-      # click_on 'Create Artist'
-
-      # expect(current_path).to eq("/artists")
-      # expect(page).to have_content('Megan')
+      expect(current_path).to eq(merchant_bulk_discounts_path(merchant_1))
+      expect(page).to have_content('Percentage_Discount 10%')
 
       end
     end
