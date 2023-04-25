@@ -1,10 +1,11 @@
 <h1> Bulk Discounts Index Page </h1>
 <h3> <%=  @merchant.name %> Discounts </h3> 
 <div class="bulk_discount">
-  <% @merchant.bulk_discounts.each do |discount| %>
+  <% @merchant_discounts.each do |discount| %>
   <p> ID <%= link_to discount.id, merchant_bulk_discount_path(@merchant, discount)  %>
-  <p> Discount: <%= discount.percentage_discount  %>%</p>
+  <p> Discount: <%= discount.percentage_discount  %> %</p>
   <p> Minimum Quantity: <%= discount.quantity_threshold  %></p>
   <% end %>
-
 </div>
+
+<p> <%= link_to "New Discount", new_merchant_bulk_discount_path(@merchant)  %>
