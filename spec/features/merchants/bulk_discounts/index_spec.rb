@@ -33,25 +33,15 @@ RSpec.describe 'Merchant Bulk Discounts Index', type: :feature do
       it 'next to each bulk discount I see a link to deleted' do
       visit merchant_bulk_discounts_path(merchant1)
      
-      # within("#bulk-#{bulk1.id}") do
         expect(page).to have_link("Delete #{bulk1.id}")
-       end
+      end
+
       it 'when I click this link I am redirected back to the bulk discounts index page and I no longer see the discount listed' do
         visit merchant_bulk_discounts_path(merchant1)
-      click_link("Delete #{bulk1.id}")
-      expect(current_path).to eq(merchant_bulk_discounts_path(merchant1))
-      expect(page).to_not have_content(bulk1.id)
 
-      
+        click_link("Delete #{bulk1.id}")
+        expect(current_path).to eq(merchant_bulk_discounts_path(merchant1))
+        expect(page).to_not have_content(bulk1.id)
       end
     end
   end
-
-#   Merchant Bulk Discount Delete
-
-# As a merchant
-# When I visit my bulk discounts index
-# Then next to each bulk discount I see a link to delete it
-# When I click this link
-# Then I am redirected back to the bulk discounts index page
-# And I no longer see the discount listed
